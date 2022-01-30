@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class GameOverHandler : MonoBehaviour
 {
     [SerializeField] private GameObject gameoverDisplay;
-    [SerializeField] private Button pauseButton;
+    [SerializeField] private GameObject pauseButton;
     [SerializeField] private Button continueButton;
     [SerializeField] private EnemySpawner enemySpawner;
     [SerializeField] private TMP_Text gameOverText;
@@ -33,7 +33,8 @@ public class GameOverHandler : MonoBehaviour
         score = scoreHandler.GetScore();
         scoreHandler.DisableText();
         gameOverText.text = $"Game Over\nScore: {score}";
-        pauseButton.enabled = false;
+        pauseButton.SetActive(false);
+        isPaused = false;
         if (isAdWatched)
         {
             continueButton.interactable = false;
@@ -58,6 +59,7 @@ public class GameOverHandler : MonoBehaviour
         {
             AdManager.Instance.ShowAd(this);
             isAdWatched = true;
+            isPaused = false;
         }
         else
         {
@@ -74,7 +76,7 @@ public class GameOverHandler : MonoBehaviour
         gameoverDisplay.gameObject.SetActive(true);
         scoreHandler.DisableText();
         gameOverText.text = "Game Paused";
-        pauseButton.enabled = false;
+        pauseButton.SetActive(false);
         Time.timeScale = 0;
         score = scoreHandler.GetScore();
     }
@@ -83,7 +85,7 @@ public class GameOverHandler : MonoBehaviour
     {
         gameoverDisplay.gameObject.SetActive(false);
         scoreHandler.EnableText();
-        pauseButton.enabled = true;
+        pauseButton.SetActive(true);
         if (!isPaused)
         {
             enemySpawner.enabled = true;

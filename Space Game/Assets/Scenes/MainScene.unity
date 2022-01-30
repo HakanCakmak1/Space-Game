@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameoverDisplay: {fileID: 395308937}
-  pauseButton: {fileID: 1860605456}
+  pauseButton: {fileID: 1860605454}
   continueButton: {fileID: 1230136058}
   enemySpawner: {fileID: 1597232727}
   gameOverText: {fileID: 1171641088}
